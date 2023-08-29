@@ -78,13 +78,13 @@ Python Review Exercise
                 If True, (and name is already in nodes) --> overwrite value saved in the “nodes” dictionary and return True. 
                 If False, the existing value is not overwritten and False is returned.
         
-        This member function must also check the values of the “parent”, “left_child”, 
-            and “right_child” slots of the new inserted node and update any and all 
-            existing nodes in the tree as appropriate.
+        This function 
+            - checks the values of the “parent”, “left_child”, and “right_child” slots of the new inserted node
+            - update any AND all existing nodes in the tree as appropriate.
         
-        Error messages should be printed if found. For example, if the new inserted node 
-            specifies a left or right child node that already has a parent node, 
-            then an error message should be printed. 
+        Error messages should be printed if found. 
+            e.g. if the new inserted node specifies a left or right child node that already has a parent node 
+                    then an error message should be printed. 
         
         If the new inserted node specifies a parent node that does not yet exist in the tree, 
             an error message should be printed. 
@@ -95,10 +95,12 @@ Python Review Exercise
     • delete_node - "Takes one argument which is the name of the mm_node to remove from the tree.
             If the specified node to delete does not exist in the tree --> nothing is done and False is returned. 
             If the node exists, the instance and associated key in the “nodes” dictionary --> removed.
+            
             The remaining nodes, if any, in the tree must be updated appropriately. 
-            For example, if the deleted node is the parent of one or two nodes, 
+            
+            e.g. if the deleted node is the parent of one or two nodes, 
             then those child nodes must have their parent slot values updated and set to None 
-            to reflect the deletion of the specified node. 
+            
             Similar checks must be made for child node information.
 
     • Create a Python module named mm_tree_driver.py. This module will

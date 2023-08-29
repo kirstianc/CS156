@@ -101,3 +101,101 @@ class MM_Node:
         self.left_child = None
         self.right_child = None
         self.parent = None
+
+class MM_tree: 
+    """
+    slots/attributes
+    """
+    name 
+    nodes
+    number_of_nodes
+    """
+    getter functions
+    """
+    def get_name(self):
+        return self.name
+    
+    def get_nodes(self):
+        return self.nodes
+    
+    def get_count(self):
+        return self.number_of_nodes
+    """
+    setter functions
+    """
+    def set_name(self, name):
+        self.name = name
+    
+    def set_nodes(self, nodes):
+        self.nodes = nodes
+    
+    def set_count(self, number_of_nodes):
+        self.number_of_nodes = number_of_nodes
+    """
+    other functions
+    """
+    def __init__(self):
+        self.name = None
+        self.nodes = {}
+        self.number_of_nodes = 0
+    
+    def __init__(self, name):
+        self.name = name
+        self.nodes = {}
+        self.number_of_nodes = 0
+    
+    def __str__(self):
+        return "NAME: " + str(self.name) + "\nNODES: " + str(self.nodes) + "\nNUMBER OF NODES: " + str(self.number_of_nodes)
+    
+    def insert_node(self, name, node, overwrite):
+
+        """check values of parent/left_child/right_child slots of new inserted node & update corresponding nodes in tree"""
+        if name in self.nodes:
+            if overwrite == True:
+                self.nodes[name] = node
+                node.parent = self.nodes[name].parent
+                node.left_child = self.nodes[name].left_child
+                node.right_child = self.nodes[name].right_child
+                return True
+            else:
+                return False
+        else:
+            self.nodes[name] = node
+            return True
+    
+    def delete_node(self, name):
+        if name in self.nodes:
+            del self.nodes[name]
+            return True
+        else:
+            return False
+    
+
+"""
+    other functions
+    • insert_node - "takes 3 arguments -         
+        This function 
+            - checks the values of the “parent”, “left_child”, and “right_child” slots of the new inserted node
+            - update any AND all existing nodes in the tree as appropriate.
+        
+        Error messages should be printed if found. 
+            e.g. if the new inserted node specifies a left or right child node that already has a parent node 
+                    then an error message should be printed. 
+        
+        If the new inserted node specifies a parent node that does not yet exist in the tree, 
+            an error message should be printed. 
+        
+        If the new inserted node specifies a parent node that already has left-child and 
+            right-child slot values that are not None, then an error message should be printed.
+
+    • delete_node - "Takes one argument which is the name of the mm_node to remove from the tree.
+            If the specified node to delete does not exist in the tree --> nothing is done and False is returned. 
+            If the node exists, the instance and associated key in the “nodes” dictionary --> removed.
+            
+            The remaining nodes, if any, in the tree must be updated appropriately. 
+            
+            e.g. if the deleted node is the parent of one or two nodes, 
+            then those child nodes must have their parent slot values updated and set to None 
+            
+            Similar checks must be made for child node information.
+"""
