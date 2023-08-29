@@ -104,13 +104,13 @@ class MM_Node:
 
 class MM_tree: 
     """
-    slots/attributes
+    slots/attributes --------------------------------
     """
     name 
     nodes
     number_of_nodes
     """
-    getter functions
+    getter functions --------------------------------
     """
     def get_name(self):
         return self.name
@@ -121,7 +121,7 @@ class MM_tree:
     def get_count(self):
         return self.number_of_nodes
     """
-    setter functions
+    setter functions --------------------------------
     """
     def set_name(self, name):
         self.name = name
@@ -132,7 +132,7 @@ class MM_tree:
     def set_count(self, number_of_nodes):
         self.number_of_nodes = number_of_nodes
     """
-    other functions
+    other functions --------------------------------
     """
     def __init__(self):
         self.name = None
@@ -147,21 +147,38 @@ class MM_tree:
     def __str__(self):
         return "NAME: " + str(self.name) + "\nNODES: " + str(self.nodes) + "\nNUMBER OF NODES: " + str(self.number_of_nodes)
     
-    def insert_node(self, name, node, overwrite):
+def insert_node(self, name, node, overwrite):
+    if name in self.nodes:
+        if overwrite:
+            existing_node = self.nodes[name]
+            existing_parent = existing_node.parent
 
-        """check values of parent/left_child/right_child slots of new inserted node & update corresponding nodes in tree"""
-        if name in self.nodes:
-            if overwrite == True:
-                self.nodes[name] = node
-                node.parent = self.nodes[name].parent
-                node.left_child = self.nodes[name].left_child
-                node.right_child = self.nodes[name].right_child
-                return True
-            else:
-                return False
-        else:
-            self.nodes[name] = node
+            existing_node.name = node.name
+            existing_node.value = node.value
+
+            if existing_parent is not None:
+                if node.value < existing_parent.value:
+                    existing_parent.left_child = existing_node
+                else:
+                    existing_parent.right_child = existing_node
+
+            if node.left_child and node.left_child.value > node.value:
+                node.right_child = node.left_child
+                node.left_child = None
+
+            if node.right_child and node.right_child.value < node.value:
+                node.left_child = node.right_child
+                node.right_child = None
+
+            node.parent = existing_parent
+
             return True
+        else:
+            return False
+    else:
+        self.nodes[name] = node
+        return True
+
     
     def delete_node(self, name):
         if name in self.nodes:

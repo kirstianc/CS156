@@ -36,21 +36,23 @@ min-max trees and related algo
   e.g. chess
 	- since there is an absurd amt of possible chess moves, you only go down the tree to a certain depth
 
+Agents and Environments --------------------
+- the agent function maps from percept histories to actions [f: P* -> A]
+- the agent program runs on the physical architecture to produce f
+- agent = architecture + program
 
+The PAGE Process (for designing an agent) --------------------
+- PAGE = percepts, actions, goal, environment
+- tasks for designing an AGENT-BASED systems
+	What will the agent need to perceive?
+	What actions will the agent need to perform?
+	What goals will the agent need or want to accomplish? ("aim" is what you want to achieve, goal is how you achieve the "aim")
+	What will be the environment in which the agent will operate?
 
+	PAGE example (automated TAXI) --------------------
+	Perceptions? - location, destination, traffic, other cars, pedestrians, traffic lights, etc.
+	Actions? - accelerate, brake, turn, honk, etc.
+	Goals? - get to destination, obey traffic laws, etc.
+	Environment? - roads, other cars, pedestrians, traffic lights, etc.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
