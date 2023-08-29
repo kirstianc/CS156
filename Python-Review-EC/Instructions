@@ -1,0 +1,132 @@
+Python Review Exercise - pulled directly from slides
+    • Create a Python module named mm_class_defs.py This module will
+        contain class definitions that will be imported and used to create and
+        manipulate Min-Max Tree objects.
+    • In the mm_class_defs.py module, define a Python class named
+        “MM_node” that will be used to represent a single node in a min-max
+        tree.
+    • The MM_node class should contain a slot/attribute that represents
+    • the unique name of an instance of MM_node. The name of this slot should be
+        “name” The value of the “name” slot should never be empty/blank/None. It Must be
+        a non-blank and non-empty string.
+    • The name of the child node to the left. If no child node exists, then the name should
+        be “None” . The name of this slot should be “left_child”
+    • The name of the child node to the right. If no child node exists, then the name
+        should be “None” . The name of this slot should be “right_child”
+    • A value to be stored at that node. The name of this slot should be “value”
+    • The MM_node class should contain a slot/attribute that
+        represents
+    • The name of the parent node above. The name of this slot should be
+        “parent”. If there is no parent node, then the value of the “parent” slot
+        should be None.
+    • The MM_node class should define the following getter member
+        functions
+        • get_name: Returns the value stored in the “name” slot
+        • get_value: Returns the value stored in the “value” slot
+        • get_parent: Returns the value of the “parent” slot
+        • get_left_child: Returns the value in the left_child slot
+        • get_right_child: Returns the value in the right_child slot
+        • get_children: Returns a tuple of the values in the left_child and right_child slots
+    • The MM_node class should define the following setter
+        member functions
+        • set_name: Takes an argument with a value that is saved in the “name”
+            slot
+        • set_value: Takes an argument with a value that is saved in the “value”
+            slot
+        • set_parent: Takes an argument with a value that is saved in the “parent”
+            slot
+        • set_left_child: Takes an argument with a value that is saved in the
+            left_child slot
+        • set_right_child: Takes an argument with a value that is saved in the
+            right_child slot
+        • set_children: Takes two arguments. The first argument has a value that is
+            saved in the left_child slot. The second argument has a value that is saved
+            in the right_child slot.
+    • The MM_node class should define a __str__ function that
+        returns a string formatted as follows ...
+
+        NAME: <value in the name slot of the MM_node>
+        VALUE: <value in the value slot of the MM_node>
+        PARENT: <value in the parent slot of the MM_node>
+        LEFT CHILD: <value in the left_child slot of the MM_node>
+        RIGHT CHILD: <value in the right_child slot of the MM_node>
+
+    • The MM_node class should define an __init__(self) function
+        that no arguments and initializes all slots to None.
+    • The MM_node class should define an __init__(self, name)
+        function that takes one argument and initializes all slots to None
+        except saves the value of the argument in the slot name “name”.
+    • The MM_node class should define an __init__(self, name, value)
+        function that takes two arguments and initializes all slots to None
+        except saves the value of the first argument in the slot named
+        “name” and saves the value of the second argument in the slot
+        named value.
+
+    • In the mm_class_defs.py module, define a Python class named
+        “MM_tree” that will be used to represent a Min-Max tree.
+    • The MM_tree class should contain a slot/attribute that represents
+    • the unique name of an instance of MM_tree. The name of the slot should be
+        “name” The value of the “name” slot should never be empty/blank/None. It
+        Must be a non-blank and non-empty string.
+    • the nodes in the tree. The name of the slot should be “nodes” If the tree is
+        empty, the value of the “nodes” slot should be None. If one or more nodes
+        exist, the value of the “nodes” slot should be a dictionary. The keys in the
+        dictionary are the names of the nodes, and the value associated with each
+        key should be the instance of the corresponding node.
+    • The number of nodes in the tree. The name of the slot should be
+        “number_of_nodes” The value in this slot should represent the current
+        integer number of nodes in the tree
+
+    • The MM_tree class should define the following getter member
+        functions.
+        • get_name: returns the value stored in the “name” slot.
+        • get_nodes: returns the value stored in the “nodes” slot.
+        • get_count: returns the value stored in the “number_of_nodes” slot.
+        • The MM_tree class should define the following setter member
+            functions.
+        • set_name: : Takes an argument with a value that is saved in the “name” slot
+        • set_nodes: Takes an argument with a value that is saved in the “nodes” slot.
+        • set_count: Takes an argument with a value that is saved in the
+            “number_of_nodes” slot
+
+    • The MM_tree class should define the following member function:
+        • insert_node: Takes three arguments. The first argument is the name of node to insert
+            into the graph. The second argument is a copy of an instance of the node. The third
+            argument is a Boolean value True/False. If True, then if the name of the node to
+            insert is already present in the tree, then the value of the second argument is saved
+            in the “nodes” dictionary overwriting any previous value associated with the
+            name/key and True is returned. If False, the existing value is not overwritten and
+            False is returned.
+            This member function must also check the values of the “parent”, “left_child”,
+            and “right_child” slots of the new inserted node and update any and all
+            existing nodes in the tree as appropriate.
+            Error messages should be printed if found. For example, if the new inserted node
+            specifies a left or right child node that already has a parent node, then an error
+            message should be printed. If the new inserted node specifies a parent node that does
+            not yet exist in the tree, an error message should be printed. If the new inserted node
+            specifies a parent node that already has left-child and right-child slot values that are
+            not None, then an error message should be printed.
+        • delete_node: Takes one argument which is the name of the mm_node to
+            remove from the tree. If the specified node to delete does not exist in the
+            tree, nothing is done and False is returned. If the node exists, the instance
+            and associated key in the “nodes” dictionary is removed. The remaining
+            nodes, if any, in the tree must be updated appropriately. For example, if the
+            deleted node is the parent of one or two nodes, then those child nodes must
+            have their parent slot values updated and set to None to reflect the deletion
+            of the specified node. Similar checks must be made for child node
+            information.
+
+    • Create a Python module named mm_tree_driver.py. This module will
+        contain a main driver function for the class definitions in the
+        mm_class_defs.py module. The mm_class_defs.py module should be
+        imported by the mm_tree_driver.py module. The mm_class_defs.py
+        module should never be executed, and only imported. The
+        mm_tree_driver.py module should never be imported, and only executed.
+
+    • Create a main() function in the mm_tree_driver.py module that tests the
+        creation and deletion of a Min-Mas tree and MM nodes. Make sure all
+        class member functions are tested by the driver. The output from the
+        driver should be printed messages to indicate when a node is created,
+        deleted, connected to other nodes as a parent or left or right child and so
+        forth. The driver should print at least 10 different nodes to test calls to the
+        __str__ member function.
