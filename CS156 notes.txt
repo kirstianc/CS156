@@ -1,0 +1,56 @@
+CS156
+
+definition of AI in class; representation scheme, a search scheme, and a reasoning scheme.
+	- searching, representing, reasoning
+
+intelligent agents/systems must have
+1) representation - 
+
+wolf, goat, cabbage problem (cross river problem)
+- can store information into a data structure 
+
+- kinda like 5D chess where there are numerous outcomes that lead to more
+
+2) search
+
+# of planets in universe ~ 10^20
+# of atoms in universe ~ 10^50
+# of possible chess moves ~ 10^110 (legal moves) <-> 10^123 (illegal moves)
+	- there must be some sort of algorithm or decision tree where they focus on only the useful/needed moves
+
+- there must be some sort of search scheme that lets you find acceptable choices in a reasonable time
+
+3) reasoning - 
+
+imagine you have 2 buckets full of coins, run up and down the stairs, what happens to the coins? they spill out.
+	- how did you figure it out? you never did this action before? 
+		--> you made an analogy to an experience you had
+
+- there must be some sort of reasoning base; deductive, inductive, something to infer what could happen
+
+setup python environment
+
+
+min-max trees and related algo
+- many states with possible moves being the subsequent level (each level is a state of the environment)
+  e.g. chess
+	- since there is an absurd amt of possible chess moves, you only go down the tree to a certain depth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
