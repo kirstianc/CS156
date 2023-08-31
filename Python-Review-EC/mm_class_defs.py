@@ -158,8 +158,20 @@ def insert_node(self, name, node, overwrite):
 
             if existing_parent is not None:
                 if node.value < existing_parent.value:
+                    if existing_parent.left_child is not None:
+                        existing_parent.left_child.parent = None
+                    """
+                    need to compare down the line of left nodes (left child of left child of left child... maybe function?)
+                    """
+
+
                     existing_parent.left_child = existing_node
                 else:
+                    """
+                    need to compare down the line of right nodes (right child of right child of right child... maybe function?)
+                    """
+                    
+                    
                     existing_parent.right_child = existing_node
 
             if node.left_child and node.left_child.value > node.value:
@@ -168,6 +180,7 @@ def insert_node(self, name, node, overwrite):
 
             if node.right_child and node.right_child.value < node.value:
                 node.left_child = node.right_child
+
                 node.right_child = None
 
             node.parent = existing_parent
