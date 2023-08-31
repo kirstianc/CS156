@@ -150,28 +150,29 @@ class MM_tree:
 def insert_node(self, name, node, overwrite):
     if name in self.nodes:
         if overwrite:
+            
+            
+            # 
             existing_node = self.nodes[name]
             existing_parent = existing_node.parent
 
             existing_node.name = node.name
             existing_node.value = node.value
+            
+            if existing_parent is not None:
+                if node.value < existing_parent.value:
+                    if existing_parent.left_child is not None and existing_parent.left_child.name != node.name:
+                        if node.value < existing_parent.left_child.value:
+                            existing_parent.left_child.parent = None
+                            existing_parent.left_child = existing_node
 
+            """
             if existing_parent is not None:
                 if node.value < existing_parent.value:
                     if existing_parent.left_child is not None:
                         existing_parent.left_child.parent = None
-                    """
-                    need to compare down the line of left nodes (left child of left child of left child... maybe function?)
-                    """
-
-
                     existing_parent.left_child = existing_node
                 else:
-                    """
-                    need to compare down the line of right nodes (right child of right child of right child... maybe function?)
-                    """
-                    
-                    
                     existing_parent.right_child = existing_node
 
             if node.left_child and node.left_child.value > node.value:
@@ -186,6 +187,7 @@ def insert_node(self, name, node, overwrite):
             node.parent = existing_parent
 
             return True
+            """
         else:
             return False
     else:

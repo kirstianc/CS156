@@ -60,3 +60,41 @@ PAGE exercise (Financial Planning Agent) --------------------
 	Actions? invest, save, purchase assets (e.g. housing, land, etc.), etc
 	Goals? achieve financial stability, retirement, financial goals, etc
 	Environment? emails, financial instituation dashboards, financial situations (interest rate, supply, demand), etc
+
+--------------------------------------------
+Example: Romania
+- go on holiday in Romania, currently in Arad
+- flight leaves tomorrow from Bucharest
+
+Formulate Goal
+	- be in Bucharest
+
+Formulate Problem
+	- states: various cities
+	- actions: drive between cities
+	- initial state: Arad
+	- goal state: Bucharest
+
+Find Solution
+	- sequence of cities: Arad -> Sibiu -> Fagaras -> Bucharest
+
+--------------------------------------------
+
+Problem types
+- deterministic, fully observable --> single-state problem
+	: agent knows exactly which state it will be in; solution is a sequence
+- deterministic, non-observable --> sensorless problem (conformat problem)
+	: agent may have no idea where it is; solution is a sequence
+- nondeterministic and/or partially observable --> contingency problem
+	: percepts provide new information abt current state; often interleave search, execution
+- unknown state space --> exploration problem
+	: agent must gather data to find solution (as executing, take in new information and use it to find/adjust solution)
+
+Tree-Search algorithm
+- function TREE-SEARCH(problem, strategy) returns a solution, or failure
+	- initialize the search tree using the initial state of problem
+	- loop do
+		- if there are no candidates for expansion then return failure
+		- choose a leaf node for expansion according to strategy
+		- if the node contains a goal state then return the corresponding solution
+		- else expand the node and add the resulting nodes to the search tree
