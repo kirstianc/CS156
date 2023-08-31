@@ -55,4 +55,8 @@ The PAGE Process (for designing an agent) --------------------
 	Goals? - get to destination, obey traffic laws, etc.
 	Environment? - roads, other cars, pedestrians, traffic lights, etc.
 
-	
+PAGE exercise (Financial Planning Agent) --------------------
+	Perceptions? current financial situation, current trends on stock markets, news channels, political climate, etc
+	Actions? invest, save, purchase assets (e.g. housing, land, etc.), etc
+	Goals? achieve financial stability, retirement, financial goals, etc
+	Environment? emails, financial instituation dashboards, financial situations (interest rate, supply, demand), etc
