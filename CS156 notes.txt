@@ -196,34 +196,45 @@ Summary
 	- goal-based
 	- utility-based
 	- learning
-: advantages and disadvantages of each agent architecture
-	- table-lookup driven
-	pro
-		:
-	con
-		:
-	- simple reflex
-	pro
-		:
-	con
-		:
-	- model-based reflex
-	pro
-		:
-	con
-		:
-	- goal-based
-	pro
-		:
-	con
-		:
-	- utility-based
-	pro
-		:
-	con
-		:
-	- learning
-	pro
-		:
-	con
-		:
+--------------------------------------------
+Search: The Idea
+	: Tree Search - search through a tree of possible actions
+		- implementation (states v nodes)
+			: states - a representation of the world
+			: nodes - a data structure that contains a state and other info (e.g. parent node, action, etc.)
+
+	Search strategies
+		- dimensions
+			: completeness - does it always find a solution if one exists?
+			: time complexity - # of nodes generated/expanded
+				| b: maximum branching factor of the search tree
+				| d: depth of the least-cost solution
+			: space complexity - how much memory does it need?
+			: optimality - does it always find the least-cost solution?
+
+	Uninformed Search strategies - use only information available in the problem definition
+		- breadth-first search: go through all nodes at a given level before going to the next level
+		- depth-first search: go all the way to the lowest node, then backtrack, then go to the next lowest node, etc.
+		- depth-limited search: depth-first search but with a limit on how deep you can go
+			: is this not breadth-first search with a depth limit?
+		- iterative deepening search: depth-limited search but with increasing depth limit
+		- uniform-cost search: breadth-first search but with a cost function
+			: cost function - a function that determines the cost of a node
+				| e.g. cost of a node = cost of parent node + cost of action to get to current node
+
+	Uninformed Search Summary
+		- requires abstracting away real world details to define state space to be explored feasibly
+		- iterative deepning search uses only linear space and not much more time than other uninformed algorithms
+
+	A* Search
+		- idea: avoid expanding paths that are already expensive
+		- f(n) = g(n) + h(n)
+			: g(n) = cost so far to reach n
+			: h(n) = estimated cost from n to goal (heuristic, i.e. maybe use Euclidean distance to goal, not exact)
+			: f(n) = estimated total cost of path through n to goal
+		- admissable heuristic: never overestimates the cost to reach the goal (it is optimistic)
+		=================================================
+		| Theorem: if h(n) is admissable, A* is optimal |
+		=================================================
+
+	Informed Search strategies - use problem-specific knowledge to find solutions more efficiently
