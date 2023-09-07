@@ -16,24 +16,34 @@ AUTHOR: Ian Chavez
 
       Unpublished Copyright © 2022  Leonard P. Wesley and Ian Chavez
       All Rights Reserved
-
-========================== MODIFICATION HISTORY ==============================
-08/29/23:
-    MOD:     Creation of file and initial organization
-    AUTHOR:  Ian Chavez
-    COMMENT: n/a
-====================== END OF MODIFICATION HISTORY ============================
 """
 
-class MM_Node:
+class MM_node:
     """
     slots/attributes --------------------------------
     """
-    name
-    value
-    left_child
-    right_child 
-    parent
+
+    def __init__(self):
+        self.name = None
+        self.value = None
+        self.left_child = None
+        self.right_child = None
+        self.parent = None
+
+    def __init__(self, name):
+        self.name = name
+        self.value = None
+        self.left_child = None
+        self.right_child = None
+        self.parent = None
+
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+        self.left_child = None
+        self.right_child = None
+        self.parent = None
+
     """
     getters --------------------------------
     """
@@ -81,34 +91,19 @@ class MM_Node:
     def __str__ (self):
         return "NAME: " + str(self.name) + "\nVALUE: " + str(self.value) + "\nPARENT: " + str(self.parent) + "\nLEFT CHILD: " + str(self.left_child) + "\nRIGHT CHILD: " + str(self.right_child)
 
-    def __init__(self):
-        self.name = None
-        self.value = None
-        self.left_child = None
-        self.right_child = None
-        self.parent = None
-
-    def __init__(self, name):
-        self.name = name
-        self.value = None
-        self.left_child = None
-        self.right_child = None
-        self.parent = None
-
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
-        self.left_child = None
-        self.right_child = None
-        self.parent = None
-
 class MM_tree: 
     """
     slots/attributes --------------------------------
     """
-    name 
-    nodes
-    number_of_nodes
+    def __init__(self):
+        self.name = None
+        self.nodes = {}
+        self.number_of_nodes = 0
+    
+    def __init__(self, name):
+        self.name = name
+        self.nodes = {}
+        self.number_of_nodes = 0
     """
     getter functions --------------------------------
     """
@@ -133,101 +128,61 @@ class MM_tree:
         self.number_of_nodes = number_of_nodes
     """
     other functions --------------------------------
-    """
-    def __init__(self):
-        self.name = None
-        self.nodes = {}
-        self.number_of_nodes = 0
-    
-    def __init__(self, name):
-        self.name = name
-        self.nodes = {}
-        self.number_of_nodes = 0
-    
+    """    
     def __str__(self):
         return "NAME: " + str(self.name) + "\nNODES: " + str(self.nodes) + "\nNUMBER OF NODES: " + str(self.number_of_nodes)
     
-def insert_node(self, name, node, overwrite):
-    if name in self.nodes:
-        if overwrite:
+    def insert_node(self, name, node, overwrite):
+        if name in self.nodes:
+            if overwrite:
+                
+                # error checking #
+                # check if parent node of inserting node is same as overwriting node
+                if node.get_parent() != self.nodes[name].get_parent():
+                    print("ERROR: parent node mismatch")
+                    return False
+                
+                # check if inserting node's parent node exists
+                if name not in self.nodes:
+                    print("ERROR: parent node does not exist")
+                    return False
+                
+                # check if inserting node's parent node already has two children & if inserting node is parent node's child
+                if node.get_parent() != None and node.get_parent().get_left_child() != None and node.get_parent().get_right_child() != None and node.get_parent().get_left_child() != name and node.get_parent().get_right_child() != name:
+                    print("ERROR: parent node already has two children")
+                    return False
+
+                # overwrite #
+                self.nodes[name] = node
+                return True
             
+            else:
+                # do not overwrite thus nothing done #
+                return False
             
-            # 
-            existing_node = self.nodes[name]
-            existing_parent = existing_node.parent
-
-            existing_node.name = node.name
-            existing_node.value = node.value
-            
-            if existing_parent is not None:
-                if node.value < existing_parent.value:
-                    if existing_parent.left_child is not None and existing_parent.left_child.name != node.name:
-                        if node.value < existing_parent.left_child.value:
-                            existing_parent.left_child.parent = None
-                            existing_parent.left_child = existing_node
-
-            """
-            if existing_parent is not None:
-                if node.value < existing_parent.value:
-                    if existing_parent.left_child is not None:
-                        existing_parent.left_child.parent = None
-                    existing_parent.left_child = existing_node
-                else:
-                    existing_parent.right_child = existing_node
-
-            if node.left_child and node.left_child.value > node.value:
-                node.right_child = node.left_child
-                node.left_child = None
-
-            if node.right_child and node.right_child.value < node.value:
-                node.left_child = node.right_child
-
-                node.right_child = None
-
-            node.parent = existing_parent
-
-            return True
-            """
         else:
-            return False
-    else:
-        self.nodes[name] = node
-        return True
+            # insert node #
+            self.nodes[name] = node
+            return True
 
-    
+        
     def delete_node(self, name):
+        # check if node exists #
         if name in self.nodes:
             del self.nodes[name]
+
+            # update tree to reflect deletion #
+            for node in self.nodes:
+                # check if node is parent of deleted node #
+                if self.nodes[node].get_left_child() == name:
+                    self.nodes[node].set_left_child(None)
+                if self.nodes[node].get_right_child() == name:
+                    self.nodes[node].set_right_child(None)
+                # check if node is child of deleted node #
+                if self.nodes[node].get_parent() == name:
+                    self.nodes[node].set_parent(None)
+        
             return True
         else:
+            # node does not exist, do nothing #
             return False
-    
-
-"""
-    other functions
-    • insert_node - "takes 3 arguments -         
-        This function 
-            - checks the values of the “parent”, “left_child”, and “right_child” slots of the new inserted node
-            - update any AND all existing nodes in the tree as appropriate.
-        
-        Error messages should be printed if found. 
-            e.g. if the new inserted node specifies a left or right child node that already has a parent node 
-                    then an error message should be printed. 
-        
-        If the new inserted node specifies a parent node that does not yet exist in the tree, 
-            an error message should be printed. 
-        
-        If the new inserted node specifies a parent node that already has left-child and 
-            right-child slot values that are not None, then an error message should be printed.
-
-    • delete_node - "Takes one argument which is the name of the mm_node to remove from the tree.
-            If the specified node to delete does not exist in the tree --> nothing is done and False is returned. 
-            If the node exists, the instance and associated key in the “nodes” dictionary --> removed.
-            
-            The remaining nodes, if any, in the tree must be updated appropriately. 
-            
-            e.g. if the deleted node is the parent of one or two nodes, 
-            then those child nodes must have their parent slot values updated and set to None 
-            
-            Similar checks must be made for child node information.
-"""
