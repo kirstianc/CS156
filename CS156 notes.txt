@@ -98,3 +98,132 @@ Tree-Search algorithm
 		- choose a leaf node for expansion according to strategy
 		- if the node contains a goal state then return the corresponding solution
 		- else expand the node and add the resulting nodes to the search tree
+
+--------------------------------------------
+Notion of Rational Agent
+- an agent is an entity that perceives and acts
+- rational action: whiever action maximizes the performance metric
+- rationality is distinct from:
+	: omniscience (knowing everything)
+	: omnipotence (being able to do anything)
+- agents should strive to "do the right thing", based on what they know and have perceived
+	: a rational agent should do whatever it can to maximize the performance metric
+		- however, the agent must do this within expectation (e.g. travel to destination but not at expense of human life, etc.)
+
+(Performance Metric v Goal ------------------------------------------------------------------------------)
+| Performance Metric - how is the agent going to reach the goal (e.g. increase portfolio val by 5% a yr) |
+| Goal - what is the agent trying to achieve (e.g. financial stability)									 |
+(--------------------------------------------------------------------------------------------------------)
+
+Task Environment
+: Fully observable - agent's sensors give it access to the complete state of the environment 
+	- e.g. chess
+: Partially observable - sensors give it access to only partial state
+	- e.g. driving
+
+: Deterministic - next state is completely determined by current state and action
+: Stochastic - next state is determined by current state, action, and randomness
+
+: Episodic - agent's experience is divided into episodes, all action is dependent on current episodes
+	- e.g. classifying images
+: Sequential - current decision affects all future decisions
+	- e.g. chess, driving
+
+: Static - environment is unchanged while agent is calculating
+: Dynamic - environment can change while agent is calculating
+	- e.g. driving
+
+: Discrete - finite number of actions, states, percepts
+: Continuous - infinite number of actions, states, percepts
+
+: Single Agent - agent is operating by itself
+: Multi-Agent - agent is operating with other agents
+
+Table-Lookup Driven Agent
+: agent looks up what action to do per percept sequence (codon table for DNA)
+
+Simple Reflex Agent
+: do not have memory of past world states/percepts
+: actions based solely on current percept
+e.g. 
+
+Model-Based Reflex Agent
+: have memory of past world states/percepts
+: actions based on
+	- current percept
+	- past world states/percepts
+e.g.
+
+Goal-Based Agent
+: have memory of past world states/percepts
+: actions based on 
+	- current percept
+	- past world states/percepts
+	- goal
+e.g. 
+
+Utility-Based Agent
+: have memory of past world states/percepts
+: actions based on 
+	- current percept
+	- past world states/percepts
+	- goal
+	- utility function (how useful is this action to the agent and achieving its goal)
+e.g. 
+
+Learning Agent
+: have memory of past world states/percepts
+: actions based on 
+	- current percept
+	- past world states/percepts
+	- goal
+	- utility function (how useful is this action to the agent and achieving its goal)
+	- learning function (adjust actions based on past world states/percepts)
+e.g. 
+
+Summary
+: PAGE Process
+	- aspects related to PAGE
+		: Full observable
+		: Deterministic
+		: Episodic
+		: Static
+
+: agent architectures
+	- table-lookup driven
+	- simple reflex
+	- model-based reflex
+	- goal-based
+	- utility-based
+	- learning
+: advantages and disadvantages of each agent architecture
+	- table-lookup driven
+	pro
+		:
+	con
+		:
+	- simple reflex
+	pro
+		:
+	con
+		:
+	- model-based reflex
+	pro
+		:
+	con
+		:
+	- goal-based
+	pro
+		:
+	con
+		:
+	- utility-based
+	pro
+		:
+	con
+		:
+	- learning
+	pro
+		:
+	con
+		:
