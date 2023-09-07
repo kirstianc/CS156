@@ -1,8 +1,6 @@
 # CS156 - Introduction to Artificial Intelligence
-```
-All files found here were created or used in the CS156 course at San Jose State University in Fall 2023. 
-```
->Prompts, assignments, files, and code (unless stated otherwise) belong to Leonard P. Wesley.
+#### All files found here were created or used in the CS156 course at San Jose State University in Fall 2023. 
+> ##### Prompts, assignments, files, and code (unless stated otherwise) belong to Leonard P. Wesley.
 
 ## Files and Folders Explained
 ```bash
