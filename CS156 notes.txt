@@ -253,7 +253,7 @@ Search: The Idea
 	if a heuristic is admissible, it does not mean it is consistent
 
 =================================================
-	Proof Exercise: Prove that if a heuristic is consistent, it must be admissible. Construct an admission heuristic that is not consistent
+	Proof Exercise: Prove that if a heuristic is consistent, it must be admissible. Construct an admissible heuristic that is not consistent.
 	(hint: use induction)
 ====
 	let H(n) be the heuristic function, it is assumed to be consistent
@@ -271,4 +271,3 @@ Search: The Idea
 =================================================
 
 Relaxed Problems
-- 
