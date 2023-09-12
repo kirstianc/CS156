@@ -238,3 +238,37 @@ Search: The Idea
 		=================================================
 
 	Informed Search strategies - use problem-specific knowledge to find solutions more efficiently
+	--------------------------------------------
+
+	- as the crow flies, heuristic is the hypothetical completely optimal ideal solution
+
+	heuristic is consistent if
+		- h(n) <= h(n') + c(n, a, n')
+			: n is a node in the search tree
+			: n' is a successor of n
+			: a is the action taken to get from n to n'
+			: c(n, a, n') is the step cost of taking action a from node n to node n'
+
+	if a heuristic is consistent, it is admissable 
+	if a heuristic is admissible, it does not mean it is consistent
+
+=================================================
+	Proof Exercise: Prove that if a heuristic is consistent, it must be admissible. Construct an admission heuristic that is not consistent
+	(hint: use induction)
+====
+	let H(n) be the heuristic function, it is assumed to be consistent
+
+	by definition of consistent, H(n) <= H(n') + c(n,a,n')
+		this means that H(n)'s cost is less than or equal to the cost of H(n') + the cost of the action to get to n' from n
+
+	and the definition of admissible states that H(n) <= H*(n)
+		this means the heuristic H(n) is less than or equal to the actual cost to get to the goal from n
+
+	since H(n') is heuristic, it must be less than or equal H*(n)
+	and c(n,a,n') is the cost of the action to get to n' from n
+		therefore, H(n') + c(n,a,n') <= H*(n) + c(n,a,n')
+		from there, it can be concluded H(n) <= H*(n)
+=================================================
+
+Relaxed Problems
+- 
