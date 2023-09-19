@@ -271,9 +271,7 @@ def heuristic_1(a, b):
    return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 def heuristic_2(a, b):
-    # As the crow flies 
-
-    
+    # As the crow flies (Euclidean distance)
     return ((a[0] - b[0])**2 + (a[1] - b[1])**2)**0.5
 
 def a_star_search(graph, start, goal):
