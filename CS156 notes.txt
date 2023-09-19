@@ -271,3 +271,25 @@ Search: The Idea
 =================================================
 
 Relaxed Problems
+
+=================================================
+
+Min-Max Alpha-Beta Cut Off
+
+Why Games?
+- game playing scenarios provide perfect context to evaluate the effectiveness of search algorithms
+
+How to play games
+- consider legal moves
+- compute new position from prior move
+- evaluate resulting position (e.g. is it a win, loss, draw, etc.), determine which is best
+- make that move 
+- wait for opponent to move, repeat 
+
+Evaluation Function - evaluates "goodness" of game position (contrasts w heuristic search where function was non-negative)
+- e.g. Tic Tac Toe; f(n) = [# of 3-lengths open for me] - [# of 3-lengths open for you] (where 3-length is a complete row, column, or diagonal)
+
+Minimax Algorithm
+- idea: choose move to position with highest minimax value
+- minimax value of a node = best achievable utility against optimal play
+- 
