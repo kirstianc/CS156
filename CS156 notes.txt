@@ -139,7 +139,7 @@ Task Environment
 : Single Agent - agent is operating by itself
 : Multi-Agent - agent is operating with other agents
 
-Table-Lookup Driven Agent
+Table-Lookup Driven Agent 
 : agent looks up what action to do per percept sequence (codon table for DNA)
 
 Simple Reflex Agent
@@ -292,4 +292,29 @@ Evaluation Function - evaluates "goodness" of game position (contrasts w heurist
 Minimax Algorithm
 - idea: choose move to position with highest minimax value
 - minimax value of a node = best achievable utility against optimal play
-- 
+
+Alpha-Beta Pruning
+- idea: avoid exploring paths that are already bad 
+--> frees up resources to explore deeper or expand evaluation function to have more features
+- compare to other side of tree, 
+	e.g. min level, left node is 2, right node is <=1 
+		| checked left node of right node and evaluated to 1
+		| no need to check right node bc the left node of the tree is 2 and thus this right node doesn't matter
+		| since root note is max level, the value of the root node is 2
+- worse case: no pruning 
+- best case: examine only (2b)^(d/2) nodes
+	: b = branching factor
+	: d = depth of tree
+- alpha cutoff: if cut off below max node
+- beta cutoff: if cut off below min node
+
+Alpha-Beta Practice
+D = 6, E = 8 alpha cut 10, B = 6, F = 2, C = 2 beta cut G, G = cut out, A = 6
+
+	   A 			- max level
+   B        C		- min level
+ D 	 E	  F    G 	- max level
+6 5 8 10 2 1 16 18
+
+beta cut @ c because 2 < 6 and since its min lvl, 
+any possible value to replace 2 would be <=2 therefore 6 is the max value
