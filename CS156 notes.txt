@@ -318,3 +318,17 @@ D = 6, E = 8 alpha cut 10, B = 6, F = 2, C = 2 beta cut G, G = cut out, A = 6
 
 beta cut @ c because 2 < 6 and since its min lvl, 
 any possible value to replace 2 would be <=2 therefore 6 is the max value
+
+=================================================
+Logical Agents
+: useful in non-episodic, partially observable enviornments
+: Logic (Knowledge-Based) Agents combine
+	- knowledge base (list of facts known to agent)
+	- current percept 
+	to infer hidden aspects of current state using "rules of inference"
+: Knowledge Base (KB) - a set of sentences in a formal language
+	- e.g. propositional logic, first-order logic
+: Propositional Logic
+	- sentence: a statement that is either true or false (e.g. A+B > X, NOT A+B)
+	- entailment: KB |= alpha (KB entails alpha) iff alpha is true in all models of KB
+		: the truth of one sentence follows from the truth of another
