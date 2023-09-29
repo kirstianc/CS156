@@ -328,7 +328,21 @@ Logical Agents
 	to infer hidden aspects of current state using "rules of inference"
 : Knowledge Base (KB) - a set of sentences in a formal language
 	- e.g. propositional logic, first-order logic
-: Propositional Logic
+
+Propositional Logic
 	- sentence: a statement that is either true or false (e.g. A+B > X, NOT A+B)
-	- entailment: KB |= alpha (KB entails alpha) iff alpha is true in all models of KB
-		: the truth of one sentence follows from the truth of another
+: Entailment: KB |= alpha (KB entails alpha) iff alpha is true in all models of KB
+	- the truth of one sentence follows from the truth of another
+	- i.e. KB means A iff A is true in all models of KB (so KB |= A)
+: Inference: KB |- alpha (alpha can be derived from KB using inference rule i)
+	: soundness: if KB |- alpha, then KB |= alpha
+	-> never false positives but might not derive all trues 
+	: completeness: if KB |= alpha, then KB |- alpha
+	-> all trues can be derived but might have false trues
+	: Desirable - soundness and completeness
+: Inference by Enumeration
+	: sound and complete
+	: time complexity: O(2^n)
+: Validity - valid if true in all models (e.g. true, A or not A)
+: Satisfiability - satisfiable if true in some model (e.g. A or B, C)
+: Unsatisfiability - unsatisfiable if false in ALL models (e.g. A and not A)

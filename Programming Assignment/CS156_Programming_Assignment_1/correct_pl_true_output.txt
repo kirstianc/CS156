@@ -1,0 +1,42 @@
+STARTING TEST OF AIMA 3rd Ed LOGIC FUNCTIONS (CHAPS 7 TO 10)
+
+1: kb.clauses =  []
+2: kb.tell(A & B)
+3: kb.clauses =  [A, B]
+For '.ask', the result {} means true, with no substitutions.
+3.1: kb.ask(A) =  False
+
+4: kb.tell(B => C)
+5: kb.clauses =  [A, B, (C | ~B)]
+For '.ask', the result {} means true, with no substitutions.
+6: kb.ask(C) =  {}
+7: kb.ask(P) =  False
+8: kb.retract(B) =  [A, (C | ~B)]
+9: kb.ask(C) =  False
+10: pl_true(P, {}) =  None
+11: pl_true(P | Q, {P: True}) =  True
+12: pl_true(P | ~P) =  None
+13: tt_true(P | ~P) =  True
+
+TESTING TAUTOLOGIES
+14: tt_true("(A & B) <=> (B & A)") =  True
+15: tt_true("(A | B) <=> (B | A)") =  True
+16: tt_true("((A & B) & C) <=> (A & (B & C))") =  True
+17: tt_true("((A | B) | C) <=> (A | (B | C))") =  True
+18: tt_true("~~A <=> A") =  True
+22: tt_true("~(A & B) <=> (~A | ~B)") =  True
+23: tt_true("~(A | B) <=> (~A & ~B)") =  True
+24: tt_true("(A & (B | C)) <=> ((A & B) | (A & C))") =  True
+25: tt_true("(A | (B & C)) <=> ((A | B) & (A | C))") =  True
+
+The following are not tautologies
+26: tt_true(A & ~A) =  False
+27: tt_true(A & B) =  False
+
+CHECKING UNIFICATION
+33: unify(x, x, {}) =  {}
+34: unify(x, 3, {}) =  {x: 3}
+
+35: to_cnf((P&Q) | (~P & ~Q)) =  ((~P | P) & (~Q | P) & (~P | Q) & (~Q | Q))
+
+DONE
