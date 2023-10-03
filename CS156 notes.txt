@@ -28,9 +28,6 @@ imagine you have 2 buckets full of coins, run up and down the stairs, what happe
 
 - there must be some sort of reasoning base; deductive, inductive, something to infer what could happen
 
-setup python environment
-
-
 min-max trees and related algo
 - many states with possible moves being the subsequent level (each level is a state of the environment)
   e.g. chess
