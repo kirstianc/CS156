@@ -310,7 +310,7 @@ def pl_true(exp, model={}):
     elif op == '&':
         result = True
         for arg in args:
-            p = pl_true(arg, model)
+            p = pl_true(arg, model) #<put the correct programming statement here.> Replace return arg with correct statement
             if p is False:
                 return False
             if p is None:
@@ -324,7 +324,7 @@ def pl_true(exp, model={}):
     if op == '==>':
         return (not pl_true(p, model)) or pl_true(q, model)
     elif op == '<==':
-        return pl_true(p, model) or (not pl_true(q, model)) 
+        return pl_true(p, model) or (not pl_true(q, model))
     pt = pl_true(p, model)
     if pt is None:
         return None
@@ -2048,6 +2048,138 @@ wumpus_kb.tell(B11 | '<=>' | (P12 | P21))
 wumpus_kb.tell(B21 | '<=>' | (P11 | P22 | P31))
 wumpus_kb.tell(~B11)
 wumpus_kb.tell(B21)
+
+P11, P12, P13, P21, P22, P31, B11, B21, B12 = expr('P11, P12, P13, P21, P22, P31, B11, B21, B12')
+
+
+def biconditional_elimitation(expr):
+   """The function does the biconditional elimination operation by converting
+   an expression from if and only if into the intersection(&) of two implications"""
+   part1 = Expr('>>', expr.split(' <=> ')[0], expr.split(' <=> ')[1])
+   part2 = Expr('>>', expr.split(' <=> ')[1], expr.split(' <=> ')[0])
+   return Expr('&', part1, part2)
+
+
+def contrapositive_equivalence(expr):
+   """The function creates the contrapositive equivalence operation by converting
+   an implication expression into its contrapositive, going from A -> B to ~B -> ~A"""
+   arg = expr.args
+   part1 = Expr('~', arg[1])
+   part2 = Expr('~', arg[0])
+   return Expr('>>', part1, part2)
+
+
+def retracting(kb, expr):
+   """The function retracts a certain expression from every clause of the knowledge base
+   if a sentence was a part of the clause it is impossible to retract it from the knowledge base
+   using a retract() method, since it will delete the whole sentence. This function creates a new
+   clause without the part that needs to be retracted, removes the previous sentence from the knowledge
+   base and inserts a new one"""
+   expr_arr = []
+   for clause in kb.clauses:
+       if str(clause).__contains__(expr) and not str(clause).__contains__('~' + expr):
+           expr_arr.append(clause)
+           new_clause = str(clause).replace(expr + ' | ', '')
+           kb.tell(new_clause)
+   for clause in expr_arr:
+       kb.retract(clause)
+
+def wumpus_1():
+    """The function recreates the seventeen rules(R1 - R17) from the textbook and
+        the lecture notes, the first five rules and rules 11 and 12 are added manually, other
+        rules are derived using equivalence relations and operations"""
+    kb = PropKB()
+    # Adding the first five rules to the knowledge base
+    R1 = '~P11'
+    R2 = 'B11 <=> (P12 | P21)'
+    R3 = 'B21 <=> (P11 | P22 | P31)'
+    R4 = '~B11'
+    R5 = 'B21'
+    kb.tell(R1)
+    kb.tell(R2)
+    kb.tell(R3)
+    kb.tell(R4)
+    kb.tell(R5)
+
+    # Deriving the next five rules R6 - R10 from the first five rules using equivalence relations
+    R6 = biconditional_elimitation(R2)
+    if kb.ask(B11 | '==>' | (P12 | P21)) == {} and kb.ask(((P12 | P21) | '==>' | B11)) == {}:
+        R7 = R6.args[1]
+    R8 = contrapositive_equivalence(R7)
+    if kb.ask(~B11) == {}:
+        R9 = R8.args[1]
+    R10 = to_cnf(R9)
+
+
+    # Adding R11 and R12 to the knowledge base
+    R11 = '~B12'
+    R12 = 'B12 <=> (P11 | P22 | P13)'
+    kb.tell(R11)
+    kb.tell(R12)
+
+
+    # Deriving the next five rules R13 - R17 from the previously derived rules using equivalence relations
+    bicond = biconditional_elimitation(R12)
+    and_elim = ''
+    if kb.ask(B12 | '==>' | (P11 | P22 | P13)) == {} and kb.ask(((P11 | P22 | P13) | '==>' | B12)) == {}:
+        and_elim = bicond.args[1]
+    contrapos = contrapositive_equivalence(and_elim)
+    modus = ''
+    if kb.ask(~B12) == {}:
+        modus = contrapos.args[1]
+    de_morgans = to_cnf(modus)
+    R13 = ''
+    R14 = ''
+    if kb.ask(~P11) == {}:
+        R13 = de_morgans.args[1]
+        R14 = de_morgans.args[2]
+        kb.tell(R13)
+        kb.tell(R14)
+
+    bicond = biconditional_elimitation(R3)
+    modus = ''
+    if kb.ask(B21) == {}:
+        modus = bicond.args[0].args[1]
+    R15 = modus
+    R16 = R15
+    if R15.__contains__('P22') and kb.ask(~P22) == {}:
+        R16 = R15.replace('P22 | ', '')
+        retracting(kb, 'P22')
+    R17 = R16
+    if R16.__contains__('P11') and kb.ask(~P11) == {}:
+        R17 = R16.replace('P11 | ', '')
+        retracting(kb, 'P11')
+        kb.tell(R17)
+
+
+    # Printing out all the derived rules so that it can be seen they are derived correctly
+    print('RULES:')
+    print(R1)
+    print(R2)
+    print(R3)
+    print(R4)
+    print(R5)
+    print(R6)
+    print(R7)
+    print(R8)
+    print(R9)
+    print(R10)
+    print(R11)
+    print(R12)
+    print(R13)
+    print(R14)
+    print(R15)
+    print(R16)
+    print(R17)
+
+
+    # Printing out all the clauses from the knowledge base
+    print()
+    print('CLAUSES:')
+    print(kb.clauses)
+
+
+wumpus_1()
 
 test_kb = FolKB(map(expr, ['Farmer(Mac)',
                            'Rabbit(Pete)',
