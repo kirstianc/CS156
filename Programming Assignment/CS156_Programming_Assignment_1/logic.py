@@ -322,9 +322,9 @@ def pl_true(exp, model={}):
     # with  ~A | B.
     p, q = args
     if op == '==>':
-        return (not pl_true(p, model)) or pl_true(q, model)
+        return (not pl_true(p, model)) or pl_true(q, model) #changed for PA1
     elif op == '<==':
-        return pl_true(p, model) or (not pl_true(q, model)) 
+        return pl_true(p, model) or (not pl_true(q, model)) #changed for PA1
     pt = pl_true(p, model)
     if pt is None:
         return None

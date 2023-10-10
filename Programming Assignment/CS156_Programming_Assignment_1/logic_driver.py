@@ -102,6 +102,17 @@ def main():
     print()
     print("DONE")
 
+    print("Saving to file: logic_driver_test.txt")
+    f = open("logic_driver_test.txt", "w")
+    f.write("STARTING TEST OF AIMA 3rd Ed LOGIC FUNCTIONS (CHAPS 7 TO 10)\n")
+    f.write("\n")
+    f.write("1: kb.clauses = " + str(kb.clauses) + "\n")
+    f.write("2: kb.tell(A & B)\n")
+    f.write("3: kb.clauses = " + str(kb.clauses) + "\n")
+    f.write("3.1: kb.ask(A) = " + str(kb.ask(A)) + "\n")
+    f.write
+
+    print("Done.")
 ###
 if __name__ == '__main__':
     main()
