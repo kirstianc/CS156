@@ -343,3 +343,28 @@ Propositional Logic
 : Validity - valid if true in all models (e.g. true, A or not A)
 : Satisfiability - satisfiable if true in some model (e.g. A or B, C)
 : Unsatisfiability - unsatisfiable if false in ALL models (e.g. A and not A)
+
+In-Lecture Exercise
+Starting with R1 – R5, can you prove P1,3 
+P = pit, B = breeze
+R1: no P1,1
+R2: B1,1 <=> (P1,2 or P2,1)
+R3: B2,1 <=> (P1,1 or P1,3 or P2,2)
+R4: no B1,1
+R5: B2,1
+
+R6: (B1,1 => (P1,2 or P2,1)) and ((P1,2 or P2,1) => B1,1)
+cannot prove
+
+In Class resolution Example
+Suppose KB = (B1,1 <=> (P1,2 or P2,1)) and B1,1
+We want to prove alpha = not P1,2
+Convert (KB and not alpha) to CNF:
+
+KB = (B1,1 <=> (P1,2 or P2,1)) and B1,1
+	= (not B1,1 or (P1,2 or P2,1)) and B1,1
+	= (not B1,1 or P1,2 or P2,1) and B1,1
+	= (not B1,1 or P1,2 or P2,1) and (B1,1 or not B1,1)
+	= (not B1,1 or P1,2 or P2,1) and (B1,1 or not B1,1)
+	= (not B1,1 or P1,2 or P2,1) and true
+	= (not B1,1 or P1,2 or P2,1)
