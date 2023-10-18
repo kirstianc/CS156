@@ -1,0 +1,56 @@
+Convert R1-5 into Horn Clauses:
+R1: ~p1,1
+R2: b1,1 <=> (p1,2 v p2,1)
+R3: b2,1 <=> (p1,1 v p2,2 v p3,1)
+R4: ~b1,1
+R5: b2,1
+===
+
+break down R2 - 
+b1,1 => p1,2 v p2,1
+p1,2 v p2,1 => b1,1
+
+break down R3 - 
+b2,1 => p1,1 v p2,2 v p3,1
+p1,1 v p2,2 v p3,1 => b2,1
+
+=== Updated Rules ===
+R1: 
+    ~p1,1
+R2: 
+    b1,1 => p1,2 v p2,1
+    p1,2 v p2,1 => b1,1
+R3:
+    b2,1 => p1,1 v p2,2 v p3,1
+    p1,1 v p2,2 v p3,1 => b2,1
+R4: 
+    ~b1,1
+R5: 
+    b2,1
+===
+
+apply R4 (~b1,1) to R2
+b1,1 => p1,2 v p2,1 --> ~b1,1 => ~p1,2 v ~p2,1
+p1,2 v p2,1 => b1,1 --> ~b1,1 => ~(p1,2 v p2,1)
+    --> ~b1,1 => ~p1,2 ^ ~p2,1
+
+apply R1 (~p1,1) to R3
+b2,1 => p1,1 v p2,2 v p3,1 --> ~b2,1 => ~p1,1 ^ ~p2,2 ^ ~p3,1
+p1,1 v p2,2 v p3,1 => b2,1 --> ~p1,1 ^ ~p2,2 ^ ~p3,1 => ~b2,1
+
+R5 is already applied to R3 since b2,1 is true
+
+=== Final Rules ===
+R1: 
+    ~p1,1
+R2: 
+    ~b1,1 => ~(p1,2 v p2,1)
+    ~b1,1 => ~p1,2 ^ ~p2,1
+R3:
+    ~b2,1 => ~p1,1 ^ ~p2,2 ^ ~p3,1
+    ~p1,1 ^ ~p2,2 ^ ~p3,1 => ~b2,1
+R4: 
+    ~b1,1
+R5: 
+    b2,1
+===
