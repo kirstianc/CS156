@@ -397,3 +397,11 @@ monitor a nuclear reactor and sound an alarm if the temp/pressure is above thres
 	- temp is above threshold
 	- pressure is below threshold
 	- pressure is above threshold
+
+--------------------------------------------
+2 types of Frames
+> Individual - single objects (e.g. dog, cat, bird, etc.)
+> Generic frames - categories (e.g. animal, vehicle, etc.)
+
+Individual frames - special slot (INSTANCE-OF) that points to a frame that is the "class" of the frame
+Generic frames - special slot (IS-A) that points to a frame that is the "superclass" of the frame
