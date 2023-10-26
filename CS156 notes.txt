@@ -368,3 +368,32 @@ KB = (B1,1 <=> (P1,2 or P2,1)) and B1,1
 	= (not B1,1 or P1,2 or P2,1) and (B1,1 or not B1,1)
 	= (not B1,1 or P1,2 or P2,1) and true
 	= (not B1,1 or P1,2 or P2,1)
+
+--------------------------------------------
+Uncertainty in Rule-Based representation
+
+In-Lecture Exercise
+Design a rule-based knowledge base for
+> diagnose a car won't stop
+> identify a network intrusion event 
+> diagnose a cancer patient based on cytology lab results
+> monitor a nuclear reactor and sound an alarm if the temp/pressure is above threshold, take corrective actions such as opening pressure valves or release coolant and if the temp and pressure still exceeds the threshold, sound an alarm
+
+diagnose a car won't stop
+	- if brake pedal is pressed and car is not slowing down, then brake failure
+	- if brake pedal is pressed and car is slowing down, then brake is fine
+	- if brake pedal is not pressed and car is slowing down, then brake is fine
+	- if brake pedal is not pressed and car is not slowing down, then brake failure
+
+monitor a nuclear reactor and sound an alarm if the temp/pressure is above threshold, take corrective actions such as opening pressure valves or release coolant and if the temp and pressure still exceeds the threshold, sound an alarm
+	rule base
+	- if temp is above threshold, then release coolant
+	- if pressure is above threshold, then open pressure valves
+	- if (temp ^ pressure are above threshold) ^ (coolant is released ^ pressure valves are open), then sound alarm
+	inference engine 
+	- 
+	kb/facts (percepts)
+	- temp is below threshold
+	- temp is above threshold
+	- pressure is below threshold
+	- pressure is above threshold
