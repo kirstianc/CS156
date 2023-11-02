@@ -392,6 +392,7 @@ monitor a nuclear reactor and sound an alarm if the temp/pressure is above thres
 	- if (temp ^ pressure are above threshold) ^ (coolant is released ^ pressure valves are open), then sound alarm
 	inference engine 
 	- 
+
 	kb/facts (percepts)
 	- temp is below threshold
 	- temp is above threshold
@@ -405,3 +406,35 @@ monitor a nuclear reactor and sound an alarm if the temp/pressure is above thres
 
 Individual frames - special slot (INSTANCE-OF) that points to a frame that is the "class" of the frame
 Generic frames - special slot (IS-A) that points to a frame that is the "superclass" of the frame
+
+--------------------------------------------
+Traditional Probabilistic Reasoning
+> mapping from percepts to probabilities such that the sum of all probabilities is 1
+	> of a set of mutually disjoint/exclusive and exhaustive propositions 
+> mapping of empty set = 0
+	> e.g. {a,b,c}
+
+Evidential Reasoning
+> main difference from traditional means that subsets can be used to find probabilities
+	> e.g. {a,b,c,ab,bc,ac}
+
+Semantic Networks
+> Reification
+	> e.g. (john) -give-> (book,frank) [if need to provide more info]
+		(john) -verb-> (give) -object-> (book)
+							  -recipient-> (frank)
+> Inheritance
+	> Conflicting Inherited Values (e.g. Opus the Cartoon Penguin)
+		> Opus -is-a-> Penguin -Vocalization-> Squawks          -Subset-> Animate 
+			   -is-a-> Cartoon Character -Vocalization-> Speech -Subset->   ^
+
+-> How do we reason?
+	> logic based = inference rules
+	> rule based = rule based inference engine
+	> probability based = Bayes' Rule
+
+> Abduction Example: Medical Diagnosis
+	> Facts: symptoms, lab test results (manifestations)
+	> KB: causal assocations between symptoms and diseases
+	> Reasoning: one or more diseases whose presence would casually explain the occurrences of the given manifestations
+	
