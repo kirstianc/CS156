@@ -437,4 +437,20 @@ Semantic Networks
 	> Facts: symptoms, lab test results (manifestations)
 	> KB: causal assocations between symptoms and diseases
 	> Reasoning: one or more diseases whose presence would casually explain the occurrences of the given manifestations
-	
+
+--------------------------------------------
+In-Lecture Exercise
+Input to a single-input neuron is 2.0, its weight is 2.3, and its bias is -3.
+	i. What is the net input to the transfer function?
+		(2 * 2.3) - 3 = 1.6
+	ii. What is the neuron output?
+		1.6
+	iii. What is the output of the neuron if it has the following transfer functions?
+		a. Hard limit?
+			n < 0 -> 0
+			n >= 0 -> 1
+			therefore 1
+		b. Linear? 
+			n
+			therefore 1.6
+		c. 
